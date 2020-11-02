@@ -1,0 +1,13 @@
+package org.share.java.jdk.reflect;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ReflectApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ReflectApplication.class, args);
+    }
+
+}
