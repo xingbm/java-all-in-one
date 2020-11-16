@@ -18,6 +18,7 @@
         <module>bigdata</module>
         <module>micro-service</module>
         <module>platform-stability</module>
+        <module>pool</module>
     </modules>
 
     <properties>
