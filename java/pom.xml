@@ -16,9 +16,9 @@
 
     <modules>
         <module>data-structure-and-algorithm</module>
+        <module>foundation-of-frame-design</module>
         <module>java-jdk</module>
         <module>java-jvm</module>
-        <module>jdk</module>
     </modules>
 
     <properties>
