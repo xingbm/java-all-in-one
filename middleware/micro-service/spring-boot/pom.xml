@@ -18,6 +18,7 @@
         <module>spring-boot-dependence-demo</module>
         <module>spring-boot-dependence-demo-child</module>
         <module>spring-boot-dependence-demo-maven-module</module>
+        <module>spring-boot-feature</module>
     </modules>
 
     <properties>
