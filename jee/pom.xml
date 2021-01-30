@@ -17,6 +17,7 @@
     <modules>
         <module>jee-framework</module>
         <module>jee-web</module>
+        <module>jee-business</module>
     </modules>
 
     <properties>
