@@ -3,29 +3,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.share.java</groupId>
-        <artifactId>java</artifactId>
+        <groupId>org.share.jee.db</groupId>
+        <artifactId>jee-db</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>org.share.java.jvm</groupId>
-    <artifactId>java-jvm</artifactId>
+    <groupId>org.share.jee.db.dy.canal</groupId>
+    <artifactId>jee-db-datasync-canal</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>java-jvm</name>
+    <name>jee-db-datasync-canal</name>
     <description>Demo project for Spring Boot</description>
-
     <properties>
         <java.version>1.8</java.version>
     </properties>
-
     <dependencies>
         <dependency>
-            <groupId>org.openjdk.joi</groupId>
-            <artifactId>joi-core</artifactId>
-            <version>0.14</version>
-            <scope>system</scope>
-            <systemPath>
-                ${project.basedir}/src/main/resources/lib/jol-core-0.14.jar
-            </systemPath>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.otter</groupId>
+            <artifactId>canal.client</artifactId>
+            <version>1.1.4</version>
         </dependency>
     </dependencies>
 

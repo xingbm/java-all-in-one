@@ -7,16 +7,15 @@
         <artifactId>jee</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>org.share.jee.business</groupId>
-    <artifactId>jee-business</artifactId>
+    <groupId>org.share.jee.db</groupId>
+    <artifactId>jee-db</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>jee-business</name>
+    <name>jee-db</name>
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
 
     <modules>
-
+        <module>jee-db-datasync-canal</module>
     </modules>
-
 
 </project>
