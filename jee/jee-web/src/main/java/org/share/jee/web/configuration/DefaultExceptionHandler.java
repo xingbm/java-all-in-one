@@ -38,7 +38,7 @@ import java.io.IOException;
  * @author DawnSailing
  */
 
-@ControllerAdvice
+//@ControllerAdvice
 public class DefaultExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
