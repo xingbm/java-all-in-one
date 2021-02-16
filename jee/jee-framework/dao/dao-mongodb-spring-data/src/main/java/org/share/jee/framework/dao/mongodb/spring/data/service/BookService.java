@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,9 +18,9 @@ import java.util.List;
  * @author DawnSailing
  */
 @Service
-public class MongoDbService {
+public class BookService {
 
-    private static final Logger logger = LoggerFactory.getLogger(MongoDbService.class);
+    private static final Logger logger = LoggerFactory.getLogger(BookService.class);
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -33,13 +32,9 @@ public class MongoDbService {
      * @return
      */
     public String saveObj(Book book) {
-        logger.info("--------------------->[MongoDB save start]");
-        book.setCreateTime(new Date());
-        book.setUpdateTime(new Date());
         mongoTemplate.save(book);
         return "添加成功";
     }
-
 
     /**
      * 查询所有
@@ -47,10 +42,8 @@ public class MongoDbService {
      * @return
      */
     public List<Book> findAll() {
-        logger.info("--------------------->[MongoDB find start]");
         return mongoTemplate.findAll(Book.class);
     }
-
 
     /***
      * 根据id查询
@@ -58,7 +51,6 @@ public class MongoDbService {
      * @return
      */
     public Book getBookById(String id) {
-        logger.info("--------------------->[MongoDB find start]");
         Query query = new Query(Criteria.where("_id").is(id));
         return mongoTemplate.findOne(query, Book.class);
     }
@@ -70,9 +62,24 @@ public class MongoDbService {
      * @return
      */
     public Book getBookByName(String name) {
-        logger.info("--------------------->[MongoDB find start]");
         Query query = new Query(Criteria.where("name").is(name));
         return mongoTemplate.findOne(query, Book.class);
+    }
+
+    public List<Book> findBookByPage(String name, int pageNum) {
+        Criteria criteria = Criteria.where("name").in(name);
+        Query query = Query.query(criteria);
+        // 查询总数
+        long totalCount = mongoTemplate.count(query, Book.class);
+        // 每页个数
+        int numOfPage = 10;
+        // 计算总数
+        long totalPage = totalCount%numOfPage==0?(totalCount/numOfPage):(totalCount/numOfPage+1);
+        int skip = (pageNum -1) * numOfPage;
+        query.skip(skip).limit(numOfPage);
+        List<Book> bookList = mongoTemplate.find(query, Book.class);
+        // TODO 构造一个Page对象，包含总数、当前页数，以及查询结果集
+        return bookList;
     }
 
     /**
@@ -82,17 +89,10 @@ public class MongoDbService {
      * @return
      */
     public String updateBook(Book book) {
-        logger.info("--------------------->[MongoDB update start]");
-        Query query = new Query(Criteria.where("id").is(book.getId()));
-        Update update = new Update().set("publish", book.getPublish())
-                .set("name", book.getName())
-                .set("updateTime", new Date());
-        //updateFirst 更新查询返回结果集的第一条
+        Query query = new Query(Criteria.where("_id").is(book.get_id()));
+        Update update = new Update().set("publish", book.getPublish()).set("name", book.getName())
+                .set("info", book.getInfo());
         mongoTemplate.updateFirst(query, update, Book.class);
-        //updateMulti 更新查询返回结果集的全部
-//        mongoTemplate.updateMulti(query,update,Book.class);
-        //upsert 更新对象不存在则去添加
-//        mongoTemplate.upsert(query,update,Book.class);
         return "success";
     }
 
@@ -102,7 +102,6 @@ public class MongoDbService {
      * @return
      */
     public String deleteBook(Book book) {
-        logger.info("--------------------->[MongoDB delete start]");
         mongoTemplate.remove(book);
         return "success";
     }
@@ -114,7 +113,6 @@ public class MongoDbService {
      * @return
      */
     public String deleteBookById(String id) {
-        logger.info("--------------------->[MongoDB delete start]");
         //findOne
         Book book = getBookById(id);
         //delete

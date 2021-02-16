@@ -1,0 +1,18 @@
+spring:
+  data:
+    mongodb:
+      database: test
+      field-naming-strategy: org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy
+      host: 127.0.0.1
+      port: 27017
+      username: test
+      password: test
+      repositories:
+        type: auto
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb: debug

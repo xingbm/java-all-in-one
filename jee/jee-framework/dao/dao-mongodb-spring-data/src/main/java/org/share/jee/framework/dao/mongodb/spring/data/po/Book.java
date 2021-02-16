@@ -1,8 +1,6 @@
 package org.share.jee.framework.dao.mongodb.spring.data.po;
 
-import org.springframework.data.annotation.Id;
-
-import java.util.Date;
+import java.math.BigDecimal;
 
 /**
  * ** created by DawnSailing at 2019/9/10
@@ -11,35 +9,31 @@ import java.util.Date;
  */
 public class Book {
 
-    @Id
-    private String id;
-    //价格
-    private Integer price;
-    //书名
+    private String _id;
+
+    /**
+     * 书名
+     */
     private String name;
-    //简介
+    /**
+     * 简介
+     */
     private String info;
-    //出版社
+    /**
+     * 出版社
+     */
     private String publish;
-    //创建时间
-    private Date createTime;
-    //修改时间
-    private Date updateTime;
+    /**
+     * 价格
+     */
+    private BigDecimal price;
 
-    public String getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getName() {
@@ -66,19 +60,12 @@ public class Book {
         this.publish = publish;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }
